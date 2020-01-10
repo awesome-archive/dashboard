@@ -21,11 +21,11 @@ const assert = require('proclaim');
 describe('GET /<task-id>/edit', function() {
 
 	beforeEach(function(done) {
-		const req = {
+		const request = {
 			method: 'GET',
 			endpoint: '/abc000000000000000000001/edit'
 		};
-		this.navigate(req, done);
+		this.navigate(request, done);
 	});
 
 	it('should send a 200 status', function() {
@@ -71,6 +71,11 @@ describe('GET /<task-id>/edit', function() {
 			assert.strictEqual(field.attr('value'), '0');
 		});
 
+		it('should have an "actions" field', function() {
+			const field = this.form.find('textarea[name=actions]').eq(0);
+			assert.isDefined(field);
+		});
+
 		it('should have a disabled "standard" field', function() {
 			const field = this.form.find('select[name=standard]').eq(0);
 			assert.isDefined(field);
@@ -91,6 +96,18 @@ describe('GET /<task-id>/edit', function() {
 			assert.strictEqual(field.attr('value'), 'access');
 		});
 
+		it('should have a "hideElements" field', function() {
+			const field = this.form.find('input[name=hideElements]').eq(0);
+			assert.isDefined(field);
+			assert.strictEqual(field.attr('type'), 'text');
+			assert.strictEqual(field.attr('value'), '');
+		});
+
+		it('should have a "headers" field', function() {
+			const field = this.form.find('textarea[name=headers]').eq(0);
+			assert.isDefined(field);
+		});
+
 		it('should have "ignore" fields', function() {
 			const fields = this.form.find('input[name="ignore[]"]');
 			assert.isDefined(fields);
@@ -104,7 +121,7 @@ describe('GET /<task-id>/edit', function() {
 describe('POST /<task-id>/edit', function() {
 
 	beforeEach(function(done) {
-		const req = {
+		const request = {
 			method: 'POST',
 			endpoint: '/abc000000000000000000001/edit',
 			form: {
@@ -114,7 +131,7 @@ describe('POST /<task-id>/edit', function() {
 				ignore: ['bar', 'baz']
 			}
 		};
-		this.navigate(req, done);
+		this.navigate(request, done);
 	});
 
 	it('should send a 200 status', function() {
@@ -122,12 +139,12 @@ describe('POST /<task-id>/edit', function() {
 	});
 
 	it('should edit the task', function(done) {
-		this.webservice.task('abc000000000000000000001').get({}, function(err, task) {
+		this.webservice.task('abc000000000000000000001').get({}, function(error, task) {
 			assert.strictEqual(task.name, 'foo');
 			assert.strictEqual(task.username, 'newuser');
 			assert.strictEqual(task.password, 'secure');
 			assert.deepEqual(task.ignore, ['bar', 'baz']);
-			done();
+			done(error);
 		});
 	});
 

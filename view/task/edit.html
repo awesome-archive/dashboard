@@ -50,7 +50,7 @@ along with Pa11y Dashboard.  If not, see <http://www.gnu.org/licenses/>.
 		<div class="row">
 			<div class="col-md-8 col-sm-8 col-xs-10">
 				<label class="control-label" for="new-task-name">Name</label>
-				<input class="form-control" id="new-task-name" type="text" placeholder="E.g. My Home Page" name="name" value="{{task.name}}"/>
+				<input class="form-control" id="new-task-name" type="text" required placeholder="E.g. My Home Page" name="name" value="{{task.name}}"/>
 			</div>
 		</div>
 	</div>
@@ -59,7 +59,7 @@ along with Pa11y Dashboard.  If not, see <http://www.gnu.org/licenses/>.
 		<div class="row">
 			<div class="col-md-8 col-sm-8 col-xs-10">
 				<label class="control-label" for="new-task-url">URL</label>
-				<input class="form-control" id="new-task-url" type="url" placeholder="E.g. http://mysite.com/" name="url" value="{{task.url}}" disabled/>
+				<input class="form-control" id="new-task-url" type="url" required pattern="https?:\/\/.+" placeholder="E.g. http://mysite.com/" name="url" value="{{task.url}}" disabled/>
 			</div>
 		</div>
 	</div>
@@ -99,6 +99,19 @@ along with Pa11y Dashboard.  If not, see <http://www.gnu.org/licenses/>.
 	<div class="form-group clearfix">
 		<div class="row">
 			<div class="col-md-4 col-sm-4 col-xs-6">
+				<label class="control-label" for="new-task-actions">
+					Task Actions
+					(<a href="https://github.com/pa11y/pa11y#actions">see Pa11y documentation</a>)
+				</label>
+				<textarea class="form-control" id="new-task-actions" name="actions" aria-describedby="action-detail" placeholder="E.g. Click element #login-button">{{task.actions}}</textarea>
+				<em id="action-detail">(one action per line)</em>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group clearfix">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 col-xs-6">
 				<label class="control-label" for="new-task-username">Username</label>
 				<input class="form-control" id="new-task-username" type="text" name="username" value="{{task.username}}"/>
 			</div>
@@ -114,6 +127,25 @@ along with Pa11y Dashboard.  If not, see <http://www.gnu.org/licenses/>.
 		</div>
 	</div>
 
+	<div class="form-group clearfix">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 col-xs-6">
+				<label class="control-label" for="new-task-headers">HTTP Headers</label>
+				<textarea class="form-control" id="new-task-headers" name="headers" placeholder="Cookie: foo=bar">{{task.headers}}</textarea>
+				<em>(As key/value pairs, separated by newlines/colons)</em>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group clearfix">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 col-xs-6">
+				<label class="control-label" for="new-task-hide-elements">Hide Elements</label>
+				<input class="form-control" id="new-task-hide-elements" type="text" name="hideElements" value="{{task.hideElements}}" placeholder=".advert, #modal, div[aria-role=presentation]"/> <em>(CSS selector)</em>
+			</div>
+		</div>
+	</div>
+
 	<p class="control-label"><b>Ignore these rules</b> <a target="_blank" href="https://github.com/pa11y/pa11y/wiki/HTML-CodeSniffer-Rules">(full list of rules here)</a></p>
 
 	<div class="standards-lists">
@@ -124,7 +156,7 @@ along with Pa11y Dashboard.  If not, see <http://www.gnu.org/licenses/>.
 					{{#rules}}
 						<li>
 							<input class="pull-left" id="{{name}}" type="checkbox" name="ignore[]" value="{{name}}" {{#ignored}}checked{{/ignored}}/>
-							<label for="{{name}}" title="{{description}}" data-role="rules-tooltip" class="checkbox">
+							<label for="{{name}}" title="{{description}}" data-role="rule-tooltip" class="checkbox">
 								{{name}}
 							</label>
 						</li>

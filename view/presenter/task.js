@@ -12,8 +12,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Pa11y Dashboard.  If not, see <http://www.gnu.org/licenses/>.
-
-// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 'use strict';
 
 const presentIgnoreRules = require('./ignore');
@@ -34,6 +32,13 @@ function presentTask(task) {
 
 	// Enhance the ignored rules
 	task.ignore = presentIgnoreRules(task.ignore);
+
+	// Change headers to a string format
+	if (task.headers && typeof task.headers === 'object') {
+		task.headers = Object.keys(task.headers).map(header => {
+			return `${header}: ${task.headers[header]}`;
+		}).join('\n');
+	}
 
 	// Present the last result if present
 	if (task.last_result) {

@@ -1,6 +1,89 @@
 
 # Changelog
 
+## 3.1.0 (2019-09-27)
+
+  * Display the task ID before each line of output, so it's clear to which task a line of output belongs to when they run in parallel.
+  * Bump pa11y-webservice version, which fixes an issue with some pages failing to run.
+  * Fix incorrect routes passing an invalid value to Mongo's ObjectID.
+
+## 3.0.0 (2019-07-16)
+
+  * Update pa11y to v5, which replaces Phantomjs with Headless Chrome
+  * Update dependencies
+  * Several bug fixes and documentation updates
+  * See the [migration guide](https://github.com/pa11y/pa11y-dashboard/blob/master/MIGRATION.md#migrating-from-20-to-30) for details of the breaking changes in this release
+
+## 2.4.2 (2018-06-21)
+
+  * Update dependencies
+    * body-parser: ~1.17.1 to ^1.18.3
+    * compression: ~1.6 to ^1.7.2
+    * express: ~4.15.2 to ^4.16.3
+    * moment: ~2.15.2 to ^2.22.2
+
+## 2.4.1 (2017-11-28)
+
+  * Update dependencies
+    * pa11y-webservice: ^2.3.0 to ^2.3.1
+
+## 2.4.0 (2017-11-23)
+
+  * Add the ability to export the results graph as a PNG, see #197 for more information
+
+## 2.3.0 (2017-10-31)
+
+  * Large overhaul of the results page, see #196 for more information
+
+## 2.2.2 (2017-03-23)
+
+  * Upgrades `body-parser` and `express`. Fixes a vulnerability in `qs`: https://snyk.io/vuln/npm:qs:20170213
+
+## 2.2.1 (2017-02-07)
+
+  * Fix task editing when no actions are specified
+
+## 2.2.0 (2017-01-27)
+
+  * Add support for Pa11y actions
+  * Update dependencies
+    * pa11y-webservice: ~2.1.2 to ^2.3.0
+
+## 2.1.2 (2016-12-12)
+
+  * Hide the "add" button in readonly mode
+  * Add a contributing guide
+
+## 2.1.1 (2016-11-20)
+
+  * Use arrows instead of plus and minus for collapsibles/expanders
+  * Supply more detailed 500 messages
+
+## 2.1.0 (2016-11-07)
+
+  * Allow for configuration files to be JavaScript rather than JSON
+  * Allow setting of HTTP headers for task runs
+  * Allow hiding/ignoring elements for task runs
+  * Update dependencies and devDependencies
+    * pa11y-webservice: ~2.0.1 to ^2.1.2
+    * mocha: ^3 to ^2 (temporary – tests weren't running)
+
+## 2.0.1 (2016-09-12)
+
+  * Update dependencies and devDependencies
+    * express: ~4.13 to ~4.14
+    * pa11y-webservice: ~2.0 to ^2.0.1
+    * request: ^2 to ^2.74
+    * mocha: ^2 to ^3
+    * pa11y-webservice-client-node: ~1.2 to ^1.2.1
+    This fixes the following vulnerabilities:
+    * https://nodesecurity.io/advisories/45
+    * https://nodesecurity.io/advisories/63
+    * https://nodesecurity.io/advisories/65
+    * https://nodesecurity.io/advisories/106
+    * https://nodesecurity.io/advisories/121
+    * https://nodesecurity.io/advisories/130
+
 ## 2.0.0 (2016-06-05)
 
   * Drop Node.js 0.10–0.12 support

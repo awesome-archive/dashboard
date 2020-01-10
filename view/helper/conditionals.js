@@ -14,22 +14,14 @@
 // along with Pa11y Dashboard.  If not, see <http://www.gnu.org/licenses/>.
 'use strict';
 
-const presentTask = require('../view/presenter/task');
+module.exports = helper;
 
-module.exports = route;
-
-// Route definition
-function route(app) {
-	app.express.get('/', (request, response, next) => {
-		app.webservice.tasks.get({lastres: true}, (error, tasks) => {
-			if (error) {
-				return next(error);
-			}
-			response.render('index', {
-				tasks: tasks.map(presentTask),
-				deleted: (typeof request.query.deleted !== 'undefined'),
-				isHomePage: true
-			});
-		});
+function helper(hbs) {
+	// Compare if one value is greater than another
+	hbs.registerHelper('ifgtr', function(conditional, condition, options) {
+		if (conditional > condition) {
+			// eslint-disable-next-line no-invalid-this
+			return options.fn(this);
+		}
 	});
 }
